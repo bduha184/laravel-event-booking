@@ -44,7 +44,7 @@ Route::get('alpine-test/index', [AlpineTestController::class, 'index']);
 Route::prefix('manager')
     ->middleware('can:manager-higher')
     ->group(function () {
-        Route::resource('event',EventController ::class);
+        Route::resource('events',EventController ::class);
     });
 
 Route::middleware('can:user-higher')
