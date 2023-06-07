@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AlpineTestController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\LivewireTestController;
 use Illuminate\Support\Facades\Route;
 
@@ -43,9 +44,7 @@ Route::get('alpine-test/index', [AlpineTestController::class, 'index']);
 Route::prefix('manager')
     ->middleware('can:manager-higher')
     ->group(function () {
-        Route::get('index', function () {
-            dd('manager');
-        });
+        Route::resource('events',EventController ::class);
     });
 
 Route::middleware('can:user-higher')
