@@ -11,13 +11,12 @@
                 <section class="text-gray-600 body-font">
                     <div class="container px-4 py-8 mx-auto">
                         @if (session('status'))
-                        <div class="mb-4 font-medium text-sm text-green-600">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                            <div class="mb-4 font-medium text-sm text-green-600">
+                                {{ session('status') }}
+                            </div>
+                        @endif
                         <div class="flex pl-4 mt-4 py-4 lg:w-2/3 w-full mx-auto">
-                            <button
-                            onclick="location.href='{{route('events.index')}}'"
+                            <button onclick="location.href='{{ route('events.index') }}'"
                                 class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">戻る</button>
                         </div>
                         <div class="w-full mx-auto overflow-auto">
@@ -45,19 +44,27 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($events as $event)
-                                    <tr>
-                                        <td class="text-blue-500 px-4 py-3"><a href="{{route('events.show',['event'=>$event->id])}}">{{$event->name}}</td></a>
-                                        <td class="px-4 py-3">{{$event->start_date}}</td>
-                                        <td class="px-4 py-3">{{$event->end_date}}</td>
-                                        <td class="px-4 py-3">後ほど</td>
-                                        <td class="px-4 py-3">{{$event->max_people}}</td>
-                                        <td class="px-4 py-3">{{$event->is_visible}}</td>
-                                    </tr>
+                                    @foreach ($events as $event)
+                                        <tr>
+                                            <td class="text-blue-500 px-4 py-3"><a
+                                                    href="{{ route('events.show', ['event' => $event->id]) }}">{{ $event->name }}
+                                            </td></a>
+                                            <td class="px-4 py-3">{{ $event->start_date }}</td>
+                                            <td class="px-4 py-3">{{ $event->end_date }}</td>
+                                            <td class="px-4 py-3">
+                                                @if (is_null($event->number_of_people))
+                                                    0
+                                                @else
+                                                    {{ $event->number_of_people }}
+                                                @endif
+                                            <td>
+                                            <td class="px-4 py-3">{{ $event->max_people }}</td>
+                                            <td class="px-4 py-3">{{ $event->is_visible }}</td>
+                                        </tr>
                                     @endforeach
                                 </tbody>
                             </table>
-                            {{$events->links()}}
+                            {{ $events->links() }}
 
                         </div>
 

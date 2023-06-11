@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            イベント管理
+            本日以降のイベント一覧
         </h2>
     </x-slot>
 
@@ -15,7 +15,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                        <div class="flex justify-between pl-4 mt-4 py-4 lg:w-2/3 w-full mx-auto">
+                        <div class="flex justify-git push pl-4 mt-4 py-4 lg:w-2/3 w-full mx-auto">
                             <button
                             onclick="location.href='{{route('events.past')}}'"
                                 class=" text-white bg-green-800 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">過去のイベント一覧</button>

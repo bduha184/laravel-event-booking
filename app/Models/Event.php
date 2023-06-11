@@ -6,6 +6,8 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use App\Models\User;
 
 class Event extends Model
 {
@@ -40,6 +42,13 @@ class Event extends Model
             get:fn() => Carbon::parse($this->end_date)->format('H時i分')
         );
     }
+
+    public function users():BelongsToMany{
+        return $this->belongsToMany(User::class,'reservations')
+        ->withPivot('id','number_of_people','canceled_date');
+    }
+
+
 
 
 }
